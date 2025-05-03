@@ -3,14 +3,8 @@
   "name": "pyloid-app",
   "main_script": "src-pyloid/main.py",
   "datas": [
-    [
-      "src-pyloid/icons/",
-      "src-pyloid/icons/"
-    ],
-    [
-      "dist-front/",
-      "dist-front/"
-    ]
+    ["src-pyloid/icons/", "src-pyloid/icons/"],
+    ["dist-front/", "dist-front/"]
   ],
   "excludes": [
     "PySide6.QtQml",
