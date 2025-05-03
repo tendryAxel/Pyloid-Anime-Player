@@ -1,41 +1,43 @@
 import pyloidLogo from './assets/pyloid_icon.png';
-import './App.css';
 import { baseAPI, rpc } from 'pyloid-js';
 import { useState } from 'react';
+import {Button, Flex, Image, Link, Text} from "@chakra-ui/react";
 
 function App() {
   const [message, setMessage] = useState('');
 
-  return (
+    const onClickGreet = async () => {
+        const message = await rpc.call('greet', {name: 'John'});
+        setMessage(message);
+    };
+
+    const onClickCreateWindows = () => rpc.call('create_window');
+    const onClickClose = () => baseAPI.close();
+    return (
     <>
-      <div>
-        <img src={pyloidLogo} className='logo pyloid' alt='Pyloid logo' />
-      </div>
-      <h1>Pyloid App</h1>
-      <div className='card'>
-        <button
-          className='action-button'
-          onClick={async () => {
-            const message = await rpc.call('greet', { name: 'John' });
-            setMessage(message);
-          }}
+      <Flex>
+        <Image src={pyloidLogo} alt='Pyloid logo' />
+      </Flex>
+      <Text>Pyloid App</Text>
+      <Flex>
+        <Button
+          onClick={onClickGreet}
         >
           Greet
-        </button>
-        <button
-          className='action-button'
-          onClick={() => rpc.call('create_window')}
+        </Button>
+        <Button
+          onClick={onClickCreateWindows}
         >
           Create Window
-        </button>
-        <button className='action-button' onClick={() => baseAPI.close()}>
+        </Button>
+        <Button onClick={onClickClose}>
           Close
-        </button>
-      </div>
-      <div>
-        <p>{message}</p>
-        <a href='https://pyloid.com'>Visit Pyloid</a>
-      </div>
+        </Button>
+      </Flex>
+      <Flex>
+        <Text>{message}</Text>
+        <Link href='https://pyloid.com'>Visit Pyloid</Link>
+      </Flex>
     </>
   );
 }

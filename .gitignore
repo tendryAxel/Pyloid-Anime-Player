@@ -34,3 +34,4 @@ pnpm-lock.yaml
 
 # bun
 bun-lock.yaml
+.idea/
