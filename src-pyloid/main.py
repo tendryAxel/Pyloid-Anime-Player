@@ -8,15 +8,16 @@ from pyloid.utils import (
 from pyloid.serve import pyloid_serve
 from pyloid import Pyloid
 from rpc import rpc
+from app import app
 
-app = Pyloid(app_name="Pyloid-App", single_instance=True)
+ICON_PATH = "src-pyloid/icons/icon.png"
 
 if is_production():
-    app.set_icon(get_production_path("src-pyloid/icons/icon.png"))
-    app.set_tray_icon(get_production_path("src-pyloid/icons/icon.png"))
+    app.set_icon(get_production_path("%s" % ICON_PATH))
+    app.set_tray_icon(get_production_path(ICON_PATH))
 else:
-    app.set_icon("src-pyloid/icons/icon.png")
-    app.set_tray_icon("src-pyloid/icons/icon.png")
+    app.set_icon(ICON_PATH)
+    app.set_tray_icon(ICON_PATH)
 
 
 ############################## Tray ################################

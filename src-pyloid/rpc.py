@@ -1,13 +1,13 @@
-from pyloid.rpc import PyloidRPC, RPCContext
+import glob
+from app import app
+from pyloid.rpc import PyloidRPC
 
 rpc = PyloidRPC()
 
-@rpc.method()
-async def greet(name: str):
-    return f"Hello, {name}!"
+store = app.store("../data/store.json")
+
+BASE_PATH_STORAGE = store.get("BASE_PATH_STORAGE") if store.get("BASE_PATH_STORAGE") else "."
 
 @rpc.method()
-async def create_window(ctx: RPCContext):
-    win = ctx.pyloid.create_window(title="Google Window")
-    win.load_url("https://www.google.com")
-    win.show_and_focus()
+async def file_list():
+    return glob.glob(f"{BASE_PATH_STORAGE}/**/**.*", recursive=True)

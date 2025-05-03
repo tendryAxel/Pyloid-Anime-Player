@@ -35,3 +35,6 @@ pnpm-lock.yaml
 # bun
 bun-lock.yaml
 .idea/
+
+#Application data
+./data/
