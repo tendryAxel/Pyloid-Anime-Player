@@ -38,3 +38,4 @@ bun-lock.yaml
 
 #Application data
 ./data/
+/build-linux.spec
